@@ -8,3 +8,7 @@ if(!R::testConnection()){
 }else{
 	echo 'есть подключение';
 }
+
+$id = 2;
+
+R::exec('DELETE FROM `test` WHERE `id` = ?', array($id));
