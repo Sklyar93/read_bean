@@ -2,6 +2,7 @@
 require 'rb/rb.php';
 
 R::setup('mysql:host=localhost;dbname=db_test','root','root');
+R::freeze(false);
 
 if(!R::testConnection()){
 	exit('нет подключения к БД');
@@ -13,8 +14,15 @@ if(!R::testConnection()){
 
 R::exec('DELETE FROM `test` WHERE `id` = :id', array(':id' => $id));*/
 
-$user = R::dispense('user');
+R::ext('xdispense', function($name){
+	return R::getRedBean()->dispense($name);
+});
+
+
+$user = R::xdispense('user_names');
 $user->name = 'valera';
 $user->age = 27;
-
+$user->country = 'Russia';
+$user->city = 'Krasnodar';
+$user->citys = 'Krasnodar';
 R::store($user);
