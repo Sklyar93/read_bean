@@ -9,6 +9,12 @@ if(!R::testConnection()){
 	echo 'есть подключение';
 }
 
-$id = 1;
+/*$id = 1;
 
-R::exec('DELETE FROM `test` WHERE `id` = :id', array(':id' => $id));
+R::exec('DELETE FROM `test` WHERE `id` = :id', array(':id' => $id));*/
+
+$user = R::dispense('user');
+$user->name = 'valera';
+$user->age = 27;
+
+R::store($user);
